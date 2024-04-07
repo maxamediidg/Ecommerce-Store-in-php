@@ -300,7 +300,7 @@ $allFruits= $Fruits->fetchAll(PDO::FETCH_OBJ);
                                             <a href="detail-product.html">$ <?php echo $Fruits->price; ?></a>
                                         </h4>
                                         <div class="card-price">
-                                            <!-- <span class="discount">Rp. 300.000</span> -->
+                                            <span class="discount">Rp. 300.000</span>
                                             <span class="reguler"> <?php echo $Fruits->price; ?></span>
                                         </div>
                                         <a href="<?php echo APPURL;?>/products/detail-product.php?id= <?php echo $Fruits->id; ?>" class="btn btn-block btn-primary">
