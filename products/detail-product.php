@@ -10,10 +10,11 @@ if (isset($_POST['submit'])) {
     $pro_image = $_POST['pro_image'];
     $pro_price = $_POST['pro_price'];
     $pro_qty = $_POST['pro_qty'];
+    $pro_subtotoal = $_POST['pro_subtotoal'];
     $user_id = $_POST['user_id'];
 
-    $insert = $conn->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,user_id)
- values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:user_id)");
+    $insert = $conn->prepare("insert into cart(pro_id,pro_title,pro_image,pro_price,pro_qty,pro_subtotoal,user_id)
+ values(:pro_id,:pro_title,:pro_image,:pro_price,:pro_qty,:pro_subtotoal,:user_id)");
 
     $insert->execute([
         ':pro_id' => $pro_id,
@@ -21,6 +22,7 @@ if (isset($_POST['submit'])) {
         ':pro_image' => $pro_image,
         ':pro_price' => $pro_price,
         ':pro_qty' => $pro_qty,
+        'pro_subtotoal' => $pro_subtotoal,
         ':user_id' => $user_id,
 
     ]);
@@ -113,7 +115,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
-                                <input class="form-control" type="hidden" name="pro_price" value="<?php echo $products->price; ?>">
+                                <input class="pro_price form-control" type="hidden" name="pro_price" value="<?php echo $products->price; ?>">
                             </div>
                         </div>
                         <div class="row">
@@ -129,9 +131,14 @@ if (isset($_GET['id'])) {
 
                         <div class="row">
                             <div class="col-sm-5">
-                                <input class="form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->qauntity; ?>" name="pro_qty">
+                                <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $products->qauntity; ?>" name="pro_qty">
                             </div>
                             <div class="col-sm-6"><span class="pt-1 d-inline-block">Pack (1000 gram)</span></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <input class="subtotal_price form-control" type="hidden" name="pro_subtotoal" value="<?php echo $products->price * $products->quantity; ?>">
+                            </div>
                         </div>
                         <?php if (isset($_SESSION['username'])) : ?>
                             <?php if ($Validate->rowCount() > 0) : ?>
@@ -229,6 +236,24 @@ if (isset($_GET['id'])) {
                 }
             })
         });
+
+        $(".pro_qty").mouseup(function () {
+                  
+                 
+
+                  var $el = $(this).closest('form');
+  
+  
+                    var pro_qty = $el.find(".pro_qty").val();
+                    var pro_price = $el.find(".pro_price").val();
+                      
+                    var subtotal = pro_qty * pro_price;
+                    //alert(subtotal);
+                    $el.find(".subtotal_price").val("");        
+  
+                    $el.find(".subtotal_price").val(subtotal);
+              })
+  
 
     })
 </script>

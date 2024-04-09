@@ -37,7 +37,7 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                                     <tr>
                                         <th width="10%"></th>
                                         <th>Products</th>
-                                        <th>Price</th>
+                                        <th>Price in USD</th>
                                         <th width="15%">Quantity</th>
                                         <th width="15%">Update</th>
                                         <th>Subtotal</th>
@@ -55,17 +55,17 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
                                         <?php echo $product->pro_title; ?><br>
                                             <small>1000g</small>
                                         </td>
-                                        <td>
-                                       USD: <?php echo $product->pro_price; ?>
+                                        <td class="pro_price">
+                                      <?php echo $product->pro_price; ?>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $product->pro_qty; ?>" name="vertical-spin">
+                                            <input class="pro_qty form-control" type="number" min="1" data-bts-button-down-class="btn btn-primary" data-bts-button-up-class="btn btn-primary" value="<?php echo $product->pro_qty; ?>" name="vertical-spin">
                                         </td>
                                         <td>
                                             <a href="#" class="btn btn-primary">UPDATE</a>
                                         </td>
-                                        <td>
-                                            Rp 30.000
+                                        <td class="subtotal_price">
+                                           <?php echo $product->pro_price * $product->pro_qty; ?>
                                         </td>
                                         <td>
                                             <a href="javasript:void" class="text-danger"><i class="fa fa-times"></i></a>
@@ -107,5 +107,45 @@ $allproducts = $products->fetchAll(PDO::FETCH_OBJ);
             });
 
         })
+
+        $(".pro_qty").mouseup(function () {
+                  
+                  var $el = $(this).closest('tr');
+
+        
+
+                  var pro_qty = $el.find(".pro_qty").val();
+                  var pro_price = $el.find(".pro_price").html();
+
+                  var subtotal = pro_qty * pro_price;
+                  $el.find(".subtotal_price").html("");        
+
+                  $el.find(".subtotal_price").append(subtotal+'$');
+
+        //           $(".btn-update").on('click', function(e) {
+
+        //               var id = $(this).val();
+                    
+
+        //               $.ajax({
+        //                 type: "POST",
+        //                 url: "update-item.php",
+        //                 data: {
+        //                   update: "update",
+        //                   id: id,
+        //                   pro_amount: pro_amount
+        //                 },
+
+        //                 success: function() {
+        //                  // alert("done");
+        //                   //reload();
+        //                 }
+        //               })
+        //             });
+                 
+                
+        //    fetch();     
+      });
+
     </script>
 
