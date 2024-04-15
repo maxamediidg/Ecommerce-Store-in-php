@@ -1,3 +1,4 @@
+
 <?php
 
 // if(!isset($_SERVER['HTTP_REFERER'])){
@@ -8,16 +9,16 @@
 
 try{
 //host
-define("HOST", "localhost");
+if(!defined('HOST'))  define("HOST", "localhost");
 
 //dbname
-define("DBNAME", "freshcery");
+if(!defined('DBNAME'))  define("DBNAME", "freshcery");
 
 //user
-define("USER", "root");
+if(!defined('USER')) define("USER", "root");
 
 //password
-define("PASS", "");
+if(!defined('PASS')) define("PASS", "");
 
 $conn= new PDO("mysql:host=".HOST.";dbname=".DBNAME.";",USER, PASS);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -32,3 +33,4 @@ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(PDOException $e){
     echo $e->getMessage();
 }
+

@@ -2,7 +2,20 @@
 session_start();
 define("APPURL", "http://localhost/freshcery");
 
+
+require dirname(dirname(__FILE__)) . "/config/config.php";
+
+if(isset($_SESSION['user_id'])){
+
+$cart =$conn->query("SELECT count(*) as num_products FROM cart where user_id ='$_SESSION[user_id]';");
+
+$cart->execute();
+
+$num =$cart->fetch(PDO::FETCH_OBJ);
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -76,7 +89,7 @@ define("APPURL", "http://localhost/freshcery");
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo APPURL; ?>/products/cart.php" class="nav-link" data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-shopping-basket"></i> <span class="badge badge-primary">5</span>
+                                    <i class="fa fa-shopping-basket"></i> <span class="badge badge-primary"><?php echo $num->num_products; ?></span>
                                 </a>
 
                             </li>

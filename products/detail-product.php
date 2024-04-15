@@ -137,7 +137,7 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="row">
                             <div class="col-sm-5">
-                                <input class="subtotal_price form-control" type="text" name="pro_subtotoal" value="<?php echo $products->price * $products->quantity; ?>">
+                                <input class="subtotal_price form-control" type="hidden" name="pro_subtotoal" value="<?php echo $products->price * $products->quantity; ?>">
                             </div>
                         </div>
                         <?php if (isset($_SESSION['username'])) : ?>
@@ -233,9 +233,15 @@ if (isset($_GET['id'])) {
                 success: function() {
                     alert("Product added to cart successfully");
                     $(".btn-insert").html(" <i class='fa fa-shopping-basket'></i> Added to Cart").prop("disabled", true);
+                    WithRef();
                 }
-            })
+            });
         });
+
+        
+        function WithRef() {
+            $("body").load("detail-product.php?id=<?php echo $id ?>");
+        }
 
         $(".pro_qty").mouseup(function () {
                   
