@@ -11,7 +11,7 @@ if(isset($_POST['update'])){
     $pro_qty = $_POST['pro_qty'];
     $subtotal = $_POST['subtotal'];
     	
-    $update = $conn->prepare("UPDATE cart SET pro_qty = '$pro_qty', pro_subtotoal = '$subtotal' where id = '$id'");
+    $update = $conn->prepare("UPDATE cart SET pro_qty = '$pro_qty', pro_subtotal = '$subtotal' where id = '$id'");
     $update->execute();
 
 

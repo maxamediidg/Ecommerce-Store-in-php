@@ -120,7 +120,7 @@ phone_number,order_notes,price,user_id)
                                 <div class="form-group">
                                     <textarea class="form-control" name="order_notes" placeholder="Order Notes"></textarea>
                                 </div>
-                                <button name="submit" type="submit" class="btn btn-primary float-right">PROCEED TO CHECKOUT <i class="fa fa-check"></i></button>
+                                <button name="submit" type="submit" class="btn btn-primary float-left">PROCEED TO CHECKOUT <i class="fa fa-check"></i></button>
                             </fieldset>
                         </form>
                         <!-- Bill Detail of the Page end -->
@@ -181,10 +181,10 @@ phone_number,order_notes,price,user_id)
 
                          
                         </div>
-                        <p class="text-right mt-3">
+                        <!-- <p class="text-right mt-3">
                             <input checked="" type="checkbox"> I’ve read &amp; accept the <a href="#">terms &amp; conditions</a>
                         </p>
-                        <a href="#" class="btn btn-primary float-right">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a>
+                        <a href="#" class="btn btn-primary float-right">PROCEED TO CHECKOUT <i class="fa fa-check"></i></a> -->
                         <div class="clearfix">
                     </div>
                 </div>
