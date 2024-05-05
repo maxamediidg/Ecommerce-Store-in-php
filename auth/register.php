@@ -27,7 +27,7 @@ if(isset($_POST['submit'])) {
 $insert = $conn->prepare("insert into users(fullname,email,username,mypassword,image)
 VALUES(:fullname,:email,:username,:mypassword,:image)");
 
-$insert->execute([
+$insert->execute([ 
     ":fullname"=> $fullname,
     ":email"=> $email,
     ":mypassword"=> password_hash($password, PASSWORD_DEFAULT),
